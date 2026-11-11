@@ -25,7 +25,11 @@ if config.config_file_name is not None:
 target_metadata = Base.metadata
 
 # 4. Ambil URL database dari file .env (settings.DATABASE_URL)
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+# Normalisasi postgres:// -> postgresql:// untuk cloud database
+_alembic_db_url = settings.DATABASE_URL
+if _alembic_db_url.startswith("postgres://"):
+    _alembic_db_url = _alembic_db_url.replace("postgres://", "postgresql://", 1)
+config.set_main_option("sqlalchemy.url", _alembic_db_url)
 
 
 def run_migrations_offline() -> None:
