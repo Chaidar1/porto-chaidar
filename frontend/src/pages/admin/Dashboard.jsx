@@ -240,16 +240,13 @@ export default function Dashboard() {
   const totalSkills = skills?.length || 0;
   const totalExperiences = experiences?.length || 0;
 
-  // Nilai analytics untuk kartu statistik
-  const analyticsToday = analytics?.today ?? "—";
-  const analyticsTotal7d = analytics?.total_7d ?? "—";
-
+  // Card statistik — card "KUNJUNGAN 7 HARI" sudah dihapus
+  // karena data kunjungan sudah cukup diwakili oleh line chart di bawah.
   const cards = [
     ["PROJECT PUBLIK", String(published), `${drafts} draft · ${totalProjects} total`],
     ["PESAN MASUK", String(totalMessages), `${unread} belum dibaca`],
     ["SKILL TERDAFTAR", String(totalSkills), "di semua kategori"],
     ["PENGALAMAN", String(totalExperiences), "riwayat kerja"],
-    ["KUNJUNGAN 7 HARI", String(analyticsTotal7d), `hari ini: ${analyticsToday}`],
   ];
 
   const recentProjects = (projects || []).slice(0, 4);
